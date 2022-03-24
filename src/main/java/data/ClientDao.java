@@ -3,7 +3,6 @@ package data;
 import domain.Client;
 import java.sql.*;
 import java.util.*;
-import java.util.logging.*;
         
 public class ClientDao implements IClient{
 
@@ -40,14 +39,14 @@ public class ClientDao implements IClient{
           
           while(rs.next()){
               
-              int client_id = rs.getInt("client_id");
+              int clientId = rs.getInt("client_id");
               String name = rs.getString("name");
               String surname = rs.getString("surname");
               String email = rs.getString("email");
               int phone = rs.getInt("phone");
               double balance = rs.getDouble("balance");
               
-              client = new Client(client_id, name, surname, email, phone, balance);
+              client = new Client(clientId, name, surname, email, phone, balance);
               
               clients.add(client);
               
@@ -91,10 +90,10 @@ public class ClientDao implements IClient{
             client.setSurname(surname);
             client.setEmail(email);
             client.setPhone(phone);
-            client.setPhone(phone);
+            client.setBalance(balance);
             
       } catch (SQLException ex) {
-          Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+          ex.printStackTrace(System.out);
       } finally {
           SqlConnection.close(rs);
           SqlConnection.close(stmt);
@@ -110,7 +109,6 @@ public class ClientDao implements IClient{
       
       Connection conn = null;
       PreparedStatement stmt = null;
-      ResultSet rs = null;
       int rows = 0;
       
       try {
@@ -128,7 +126,7 @@ public class ClientDao implements IClient{
           
             
       } catch (SQLException ex) {
-          Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+          ex.printStackTrace(System.out);
       } finally {
           SqlConnection.close(stmt);
           SqlConnection.close(conn);
@@ -142,7 +140,6 @@ public class ClientDao implements IClient{
       
       Connection conn = null;
       PreparedStatement stmt = null;
-      ResultSet rs = null;
       int rows = 0;
       
       try {
@@ -161,7 +158,7 @@ public class ClientDao implements IClient{
           
             
       } catch (SQLException ex) {
-          Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+          ex.printStackTrace(System.out);
       } finally {
           SqlConnection.close(stmt);
           SqlConnection.close(conn);
@@ -177,7 +174,6 @@ public class ClientDao implements IClient{
       
       Connection conn = null;
       PreparedStatement stmt = null;
-      ResultSet rs = null;
       int rows = 0;
       
       try {
@@ -190,7 +186,7 @@ public class ClientDao implements IClient{
           rows = stmt.executeUpdate();
             
       } catch (SQLException ex) {
-          Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+          ex.printStackTrace(System.out);
       } finally {
           SqlConnection.close(stmt);
           SqlConnection.close(conn);

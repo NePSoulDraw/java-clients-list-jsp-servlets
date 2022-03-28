@@ -4,7 +4,7 @@
             <div class="col-md-3">
                 <a href="#" class="btn btn-primary btn-block" 
                    data-toogle="modal" data-target="#addModalClient">
-                    Agregar cliente
+                    + Agregar cliente
                 </a>
             </div>
         </div>

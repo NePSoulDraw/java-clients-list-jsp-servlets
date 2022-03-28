@@ -24,8 +24,23 @@ public class ServletController extends HttpServlet{
         
         req.setAttribute("clients", clients);
         
+        req.setAttribute("totalClients", clients.size());
+        
+        req.setAttribute("totalBalance", this.calculateTotalBalance(clients));
+        
         req.getRequestDispatcher("clients.jsp").forward(req, res);
         
+    }
+    
+    private double calculateTotalBalance(List<Client> clients){
+        
+        double totalBalance = 0;
+        
+        for(Client client: clients){
+            totalBalance += client.getBalance();
+        }
+        
+        return totalBalance;
     }
     
     

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="#" class="btn btn-primary btn-block" 
-                   data-toogle="modal" data-target="#addModalClient">
+                   data-toogle="modal" data-target="#addClientModal">
                     + Agregar cliente
                 </a>
             </div>

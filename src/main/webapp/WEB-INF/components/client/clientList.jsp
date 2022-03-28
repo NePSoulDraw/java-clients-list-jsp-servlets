@@ -66,3 +66,5 @@
         </div>
     </div>
 </section>
+                        
+<jsp:include page="/WEB-INF/components/client/addClient.jsp" />

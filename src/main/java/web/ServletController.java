@@ -29,13 +29,16 @@ public class ServletController extends HttpServlet{
         
         System.out.println("Clients = " + clients);
         
-        req.setAttribute("clients", clients);
+        HttpSession session = req.getSession();
         
-        req.setAttribute("totalClients", clients.size());
+        session.setAttribute("clients", clients);
         
-        req.setAttribute("totalBalance", this.calculateTotalBalance(clients));
+        session.setAttribute("totalClients", clients.size());
         
-        req.getRequestDispatcher("clients.jsp").forward(req, res);
+        session.setAttribute("totalBalance", this.calculateTotalBalance(clients));
+        
+        res.sendRedirect("clients.jsp");
+        
         
     }
     

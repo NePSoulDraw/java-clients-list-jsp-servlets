@@ -21,9 +21,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="client" items="${clients}">
+                            <c:forEach var="client" items="${clients}" varStatus="status">
                                 <tr class="align-middle">
-                                    <td>${client.clientId}</td>
+                                    <td>${status.count}</td>
                                     <td>${client.name} ${client.surname}</td>
                                     <td><fmt:formatNumber value="${client.balance}" type="currency" currencySymbol="&euro;"/></td>
                                     <td>

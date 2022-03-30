@@ -2,10 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="#" class="btn btn-primary btn-block" 
-                   data-toogle="modal" data-target="#addClientModal">
-                    + Agregar cliente
-                </a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+                    Añadir cliente
+                </button>
             </div>
         </div>
     </div>

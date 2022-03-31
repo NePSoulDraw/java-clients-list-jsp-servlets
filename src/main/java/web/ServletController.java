@@ -18,14 +18,50 @@ public class ServletController extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse res) 
                    throws ServletException, IOException{
         
-       this.deployInfo(req, res);
+        String action = req.getParameter("action");
+        
+        if(action != null){
+            
+            switch(action){
+                case "edit":
+                    this.updateClient(req, res);
+                    break;
+                default:
+                    this.deployInfo(req, res);
+            }
+            
+        }else{
+            this.deployInfo(req, res);
+        }
+        
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) 
+                   throws ServletException, IOException{
+        
+        String action = req.getParameter("action");
+        
+        if(action != null){
+            
+            switch(action){
+                case "insert":
+                    this.insertClient(req, res);
+                    break;
+                default:
+                    this.deployInfo(req, res);
+            }
+            
+        }else{
+            this.deployInfo(req, res);
+        }
         
     }
     
     private void deployInfo(HttpServletRequest req, HttpServletResponse res) 
                    throws ServletException, IOException{
         
-         List<Client> clients = new ClientDao().clientsList();
+        List<Client> clients = new ClientDao().clientsList();
         
         System.out.println("Clients = " + clients);
         
@@ -51,29 +87,6 @@ public class ServletController extends HttpServlet{
         }
         
         return totalBalance;
-    }
-    
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) 
-                   throws ServletException, IOException{
-        
-        String action = req.getParameter("action");
-        
-        if(action != null){
-            
-            switch(action){
-                case "insert":
-                    this.insertClient(req, res);
-                    break;
-                default:
-                    this.deployInfo(req, res);
-                    break;
-            }
-            
-        }else{
-            this.deployInfo(req, res);
-        }
-        
     }
     
     private void insertClient(HttpServletRequest req, HttpServletResponse res) 
@@ -115,4 +128,22 @@ public class ServletController extends HttpServlet{
     }
     
     
+    private void updateClient(HttpServletRequest req, HttpServletResponse res) 
+                   throws ServletException, IOException{
+        
+        int clientId = Integer.parseInt(req.getParameter("clientId"));
+        
+        Client client = new ClientDao().findClient(new Client(clientId));
+        
+        req.setAttribute("client", client);
+        
+        String editJsp = "/WEB-INF/components/client/editClient.jsp";
+        
+        req.getRequestDispatcher(editJsp).forward(req, res);
+        
+    }
+    
+  
+    
 }
+

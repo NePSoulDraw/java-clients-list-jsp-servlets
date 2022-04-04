@@ -78,7 +78,7 @@ public class ClientDao implements IClient{
           stmt.setInt(1, client.getClientId());
           
           rs = stmt.executeQuery();
-          rs.absolute(1);
+          if (rs.next()) {
               
             String name = rs.getString("name");
             String surname = rs.getString("surname");
@@ -91,7 +91,9 @@ public class ClientDao implements IClient{
             client.setEmail(email);
             client.setPhone(phone);
             client.setBalance(balance);
-            
+              
+          }
+          
       } catch (SQLException ex) {
           ex.printStackTrace(System.out);
       } finally {

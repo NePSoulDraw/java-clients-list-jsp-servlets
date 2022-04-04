@@ -7,6 +7,17 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class SqlConnection {
     
+    /* Database SQL code to create SCHEMA and table used --> CREATE SCHEMA `client_management`;
+                                                            
+                                                             CREATE TABLE `client_management`.`clients` (
+                                                                `client_id` INT NOT NULL AUTO_INCREMENT,
+                                                                `name` VARCHAR(45) NOT NULL,
+                                                                `surname` VARCHAR(45) NOT NULL,
+                                                                `email` VARCHAR(45) NOT NULL,
+                                                                `phone` INT NULL DEFAULT NULL,
+                                                                `balance` DOUBLE NOT NULL,
+                                                                PRIMARY KEY (`client_id`)); */
+    
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/client_management?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     
     private static final String JDBC_USER = "root";

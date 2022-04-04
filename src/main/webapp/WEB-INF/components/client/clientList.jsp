@@ -16,6 +16,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
                                 <th>Saldo</th>
                                 <th></th>
                             </tr>
@@ -25,6 +27,8 @@
                                 <tr class="align-middle">
                                     <td>${status.count}</td>
                                     <td>${client.name} ${client.surname}</td>
+                                    <td>${client.email}</td>
+                                    <td>${client.phone}</td>
                                     <td><fmt:formatNumber value="${client.balance}" type="currency" currencySymbol="&euro;"/></td>
                                     <td>
                                         <a href="${pageContext.request.contextPath}/ServletController?action=edit&clientId=${client.clientId}"

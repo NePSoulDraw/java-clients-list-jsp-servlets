@@ -7,6 +7,11 @@
             <div class="col-md-3">
                 <button type="submit" class="btn btn-success btn-block">&check; Guardar cliente</button>
             </div>
+            <div class="col-md-3">
+                <a href="${pageContext.request.contextPath}/ServletController?action=delete&clientId=${client.clientId}" 
+                   class="btn btn-danger btn-block">&Cross; Eliminar cliente
+                </a>
+            </div>
         </div>
     </div>
 </section>

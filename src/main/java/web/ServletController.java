@@ -26,6 +26,9 @@ public class ServletController extends HttpServlet{
                 case "edit":
                     this.updateClient(req, res);
                     break;
+                case "delete":
+                    this.deleteClient(req, res);
+                    break;
                 default:
                     this.deployInfo(req, res);
             }
@@ -47,6 +50,9 @@ public class ServletController extends HttpServlet{
             switch(action){
                 case "insert":
                     this.insertClient(req, res);
+                    break;
+                case "modify":
+                    this.modifyClient(req, res);
                     break;
                 default:
                     this.deployInfo(req, res);
@@ -143,7 +149,61 @@ public class ServletController extends HttpServlet{
         
     }
     
-  
+    private void modifyClient(HttpServletRequest req, HttpServletResponse res) 
+                   throws ServletException, IOException{
+        
+        int clientId = Integer.parseInt(req.getParameter("clientId"));
+        
+        String name = req.getParameter("name");
+        
+        String surname = req.getParameter("surname");
+        
+        String email = req.getParameter("email");
+        
+        int phone = 0;
+        
+        double balance = 0;
+        
+        String phoneString = req.getParameter("phone");
+        
+        String balanceString = req.getParameter("balance");
+        
+        if(phoneString != null && !"".equals(phoneString)){
+            
+            phone = Integer.parseInt(phoneString);
+            
+        }
+        
+        if(balanceString != null && !"".equals(balanceString)){
+            
+            balance = Double.parseDouble(balanceString);
+            
+        }
+        
+        Client client = new Client(clientId, name, surname, email, phone, balance);
+        
+        int ModifiedRecords = new ClientDao().updateClient(client);
+        
+        System.out.println("Modified records = " + ModifiedRecords);
+        
+        this.deployInfo(req, res);
+        
+    }
+    
+    private void deleteClient(HttpServletRequest req, HttpServletResponse res) 
+                   throws ServletException, IOException{
+        
+        int clientId = Integer.parseInt(req.getParameter("clientId"));
+        
+        int recordsDeleted = new ClientDao().deleteClient(new Client(clientId));
+        
+        System.out.println("Records deleted = " + recordsDeleted);
+        
+        this.deployInfo(req, res);
+        
+    }
     
 }
+
+
 
